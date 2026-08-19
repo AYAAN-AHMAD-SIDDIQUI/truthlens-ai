@@ -1,0 +1,676 @@
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 60px;
+
+  background: rgba(15, 23, 42, 0.92);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  position: relative;
+  z-index: 1000;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.navbar_logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  flex-shrink: 0;
+}
+
+
+.navbar_logo a {
+  text-decoration: none;
+}
+
+
+.navbar_logo h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 28px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   AI BADGE
+   ========================================================= */
+
+.nav_badge {
+  display: inline-flex;
+  align-items: center;
+
+  background: rgba(79, 70, 229, 0.14);
+
+  color: #a5b4fc;
+
+  border: 1px solid rgba(99, 102, 241, 0.35);
+
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESKTOP MENU
+   ========================================================= */
+
+.navbar_menu {
+  display: flex;
+
+  align-items: center;
+
+  gap: 38px;
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+   ========================================================= */
+
+.navbar_links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+}
+
+
+.navbar_links a {
+  position: relative;
+
+  text-decoration: none;
+
+  color: #e2e8f0;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  transition:
+    color 0.25s ease;
+}
+
+
+.navbar_links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -7px;
+
+  width: 0;
+
+  height: 2px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #4f46e5,
+      #06b6d4
+    );
+
+  transition:
+    width 0.25s ease;
+}
+
+
+.navbar_links a:hover {
+  color: #ffffff;
+}
+
+
+.navbar_links a:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.navbar_buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.login_btn,
+.signup_btn {
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  border-radius: 9px;
+
+  padding: 10px 20px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Login */
+
+.login_btn {
+  border: 1px solid rgba(99, 102, 241, 0.7);
+
+  background: transparent;
+
+  color: #ffffff;
+}
+
+
+.login_btn:hover {
+  background: rgba(79, 70, 229, 0.18);
+
+  transform: translateY(-1px);
+}
+
+
+/* Signup / Logout */
+
+.signup_btn {
+  border: none;
+
+  background:
+    linear-gradient(
+      100deg,
+      #4f46e5,
+      #6366f1
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 20px rgba(79, 70, 229, 0.2);
+}
+
+
+.signup_btn:hover {
+  background:
+    linear-gradient(
+      100deg,
+      #4338ca,
+      #4f46e5
+    );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 25px rgba(79, 70, 229, 0.35);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.menu_toggle {
+  display: none;
+
+  width: 42px;
+
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  cursor: pointer;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.menu_toggle span {
+  display: block;
+
+  width: 20px;
+
+  height: 2px;
+
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .navbar {
+    padding: 17px 30px;
+  }
+
+  .navbar_menu {
+    gap: 22px;
+  }
+
+  .navbar_links {
+    gap: 20px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+  .navbar {
+    padding: 15px 18px;
+
+    min-height: 70px;
+  }
+
+
+  /* Logo */
+
+  .navbar_logo {
+    gap: 0;
+  }
+
+
+  .navbar_logo h2 {
+    font-size: 22px;
+  }
+
+
+  /* Hide badge */
+
+  .nav_badge {
+    display: none;
+  }
+
+
+  /* Show hamburger */
+
+  .menu_toggle {
+    display: flex;
+
+    position: relative;
+
+    z-index: 1002;
+  }
+
+
+  /* Mobile menu */
+
+  .navbar_menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+
+    left: 14px;
+
+    right: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 20px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background:
+      rgba(15, 23, 42, 0.97);
+
+    border:
+      1px solid rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.4);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.25s ease;
+  }
+
+
+  /* Open menu */
+
+  .navbar_menu.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+  }
+
+
+  /* Links */
+
+  .navbar_links {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0;
+  }
+
+
+  .navbar_links a {
+    display: block;
+
+    padding: 13px 10px;
+
+    border-radius: 9px;
+
+    font-size: 16px;
+  }
+
+
+  .navbar_links a:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+
+  .navbar_links a::after {
+    display: none;
+  }
+
+
+  /* Buttons */
+
+  .navbar_buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+
+    padding-top: 5px;
+
+    border-top:
+      1px solid rgba(255, 255, 255, 0.08);
+  }
+
+
+  .navbar_buttons a {
+    width: 100%;
+  }
+
+
+  .login_btn,
+  .signup_btn {
+    width: 100%;
+
+    min-height: 44px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .navbar {
+    padding: 14px 15px;
+  }
+
+
+  .navbar_logo h2 {
+    font-size: 21px;
+  }
+
+
+  .navbar_menu {
+    left: 10px;
+
+    right: 10px;
+
+    padding: 18px;
+  }
+
+}
+
+@media (max-width: 750px) {
+
+  .navbar {
+    position: relative;
+    width: 100%;
+    min-height: 70px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+  }
+
+  .navbar_logo {
+    position: relative;
+    z-index: 1003;
+  }
+
+  .navbar_logo h2 {
+    font-size: 21px;
+    margin: 0;
+  }
+
+  .nav_badge {
+    display: none;
+  }
+
+  .menu_toggle {
+    display: flex;
+
+    position: relative;
+    z-index: 1005;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.05);
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .menu_toggle span {
+    width: 20px;
+    height: 2px;
+
+    background: white;
+
+    border-radius: 10px;
+  }
+
+  .navbar_menu {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 10px;
+    right: 10px;
+
+    width: auto;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    background: rgba(15, 23, 42, 0.98);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 16px;
+
+    box-shadow:
+      0 20px 50px rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-8px);
+
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease,
+      transform 0.2s ease;
+
+    z-index: 1004;
+  }
+
+  .navbar_menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar_links {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .navbar_links a {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    color: #e2e8f0;
+
+    text-align: left;
+  }
+
+  .navbar_links a:hover {
+    background: rgba(255,255,255,0.06);
+  }
+
+  .navbar_links a::after {
+    display: none;
+  }
+
+  .navbar_buttons {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .navbar_buttons a {
+    width: 100%;
+  }
+
+  .login_btn,
+  .signup_btn {
+    width: 100%;
+    min-height: 44px;
+  }
+}

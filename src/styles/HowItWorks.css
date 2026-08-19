@@ -1,0 +1,246 @@
+/* ==========================================
+   HOW IT WORKS
+========================================== */
+
+.how{
+    position: relative;
+    overflow: hidden;
+
+    padding: 120px 80px;
+
+    background:
+        radial-gradient(circle at top right, rgba(37,99,235,.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(6,182,212,.08), transparent 30%),
+        #050505;
+}
+
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+.how::before{
+    content:"";
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:#2563EB;
+
+    opacity:.08;
+
+    filter:blur(180px);
+
+    top:-180px;
+    right:-150px;
+
+    border-radius:50%;
+}
+
+.how::after{
+    content:"";
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:#06B6D4;
+
+    opacity:.08;
+
+    filter:blur(170px);
+
+    bottom:-150px;
+    left:-120px;
+
+    border-radius:50%;
+}
+
+/* ==========================================
+   HEADING
+========================================== */
+
+.how_heading{
+
+    position:relative;
+    z-index:2;
+
+    max-width:700px;
+
+    margin:0 auto 80px;
+
+    text-align:center;
+
+}
+
+.how_heading h2{
+
+    font-size:52px;
+
+    font-weight:700;
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.how_heading p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    color:#A1A1AA;
+
+}
+
+/* ==========================================
+   STEPS
+========================================== */
+
+.steps{
+
+    position:relative;
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.step{
+
+    background:rgba(255,255,255,.03);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:45px 35px;
+
+    text-align:center;
+
+    transition:.4s ease;
+
+}
+
+.step:hover{
+
+    transform:translateY(-12px);
+
+    border-color:#38BDF8;
+
+    box-shadow:
+        0 25px 60px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================
+   ICON
+========================================== */
+
+.step_icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 30px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #06B6D4
+    );
+
+    color:white;
+
+    transition:.4s;
+
+}
+
+.step:hover .step_icon{
+
+    transform:rotate(10deg) scale(1.08);
+
+    box-shadow:
+        0 0 30px rgba(37,99,235,.4);
+
+}
+
+/* ==========================================
+   TEXT
+========================================== */
+
+.step h3{
+
+    color:white;
+
+    font-size:25px;
+
+    margin-bottom:15px;
+
+}
+
+.step p{
+
+    color:#B4B4B8;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+    .how{
+
+        padding:80px 25px;
+
+    }
+
+    .steps{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .how_heading{
+
+        margin-bottom:60px;
+
+    }
+
+    .how_heading h2{
+
+        font-size:38px;
+
+    }
+
+    .step{
+
+        padding:35px 25px;
+
+    }
+
+}

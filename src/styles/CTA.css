@@ -1,0 +1,149 @@
+.cta {
+  padding: 120px 8%;
+  background: linear-gradient(180deg,#0b1120,#111827);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before{
+  content:"";
+  position:absolute;
+  width:450px;
+  height:450px;
+  background:#4f46e530;
+  border-radius:50%;
+  filter:blur(150px);
+  top:-120px;
+  left:-120px;
+}
+
+.cta::after{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:#06b6d430;
+  border-radius:50%;
+  filter:blur(120px);
+  bottom:-100px;
+  right:-100px;
+}
+
+.cta_container{
+  max-width:900px;
+  width:100%;
+  text-align:center;
+  padding:70px 50px;
+  border-radius:30px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+  position:relative;
+  z-index:2;
+}
+
+.cta_badge{
+  display:inline-block;
+  padding:10px 22px;
+  border-radius:999px;
+  background:rgba(79,70,229,.18);
+  color:#8b5cf6;
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+.cta h2{
+  font-size:3.3rem;
+  line-height:1.2;
+  color:#fff;
+  margin-bottom:25px;
+  font-weight:800;
+}
+
+.cta h2 span{
+  background:linear-gradient(90deg,#4f46e5,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.cta p{
+  color:#94a3b8;
+  font-size:1.1rem;
+  line-height:1.8;
+  max-width:700px;
+  margin:0 auto 40px;
+}
+
+.cta_buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.primary_btn,
+.secondary_btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 34px;
+  border:none;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.35s;
+}
+
+.primary_btn{
+  background:linear-gradient(90deg,#4f46e5,#06b6d4);
+  color:white;
+}
+
+.primary_btn:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(79,70,229,.35);
+}
+
+.secondary_btn{
+  background:transparent;
+  color:white;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.secondary_btn:hover{
+  background:rgba(255,255,255,.08);
+  transform:translateY(-5px);
+}
+
+@media(max-width:768px){
+
+.cta{
+padding:80px 6%;
+}
+
+.cta_container{
+padding:50px 25px;
+}
+
+.cta h2{
+font-size:2.2rem;
+}
+
+.cta p{
+font-size:1rem;
+}
+
+.cta_buttons{
+flex-direction:column;
+}
+
+.primary_btn,
+.secondary_btn{
+justify-content:center;
+width:100%;
+}
+
+}

@@ -1,0 +1,28 @@
+.mouse-glow {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+
+  left: -300px;
+  top: -300px;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(79, 70, 229, 0.22) 0%,
+    rgba(6, 182, 212, 0.16) 35%,
+    rgba(16, 185, 129, 0.08) 55%,
+    transparent 75%
+  );
+
+  filter: blur(55px);
+
+  transition:
+    left 0.12s ease-out,
+    top 0.12s ease-out;
+
+  z-index: 0;
+}

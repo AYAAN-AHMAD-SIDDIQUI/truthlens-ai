@@ -1,0 +1,661 @@
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-height: calc(100vh - 90px);
+  padding: 0 80px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle at top,
+    #312e81 0%,
+    #0f172a 45%,
+    #020617 100%
+  );
+}
+
+/* =========================
+   GLOW EFFECTS
+========================= */
+
+.hero::before {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  background: #4f46e5;
+  filter: blur(180px);
+  opacity: 0.25;
+
+  border-radius: 50%;
+
+  top: -150px;
+  right: -150px;
+
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+
+  width: 400px;
+  height: 400px;
+
+  background: #06b6d4;
+  filter: blur(180px);
+  opacity: 0.18;
+
+  border-radius: 50%;
+
+  bottom: -120px;
+  left: -120px;
+
+  pointer-events: none;
+}
+
+/* =========================
+   HERO LEFT
+========================= */
+
+.hero_left,
+.hero_right {
+  position: relative;
+  z-index: 2;
+}
+
+.hero_left {
+  max-width: 650px;
+}
+
+.hero_badge {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  background: rgba(79, 70, 229, 0.2);
+
+  border: 1px solid rgba(99, 102, 241, 0.4);
+
+  color: #c7d2fe;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+
+  margin-bottom: 20px;
+}
+
+.hero_left h1 {
+  font-size: 72px;
+  line-height: 1.1;
+
+  color: white;
+
+  margin-bottom: 25px;
+}
+
+.hero_left p {
+  font-size: 20px;
+  line-height: 1.8;
+
+  color: #cbd5e1;
+
+  margin-bottom: 40px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.hero_buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.primary_btn,
+.secondary_btn {
+  padding: 15px 32px;
+
+  border-radius: 12px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.35s;
+}
+
+.primary_btn {
+  background: #4f46e5;
+
+  color: white;
+
+  border: none;
+}
+
+.primary_btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 20px 40px rgba(79, 70, 229, 0.35);
+}
+
+.secondary_btn {
+  background: transparent;
+
+  color: white;
+
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.secondary_btn:hover {
+  background: #4f46e5;
+
+  border-color: #4f46e5;
+
+  transform: translateY(-4px);
+}
+
+/* =========================
+   HERO RIGHT
+========================= */
+
+.hero_right {
+  width: 520px;
+  height: 520px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.hero_right canvas {
+  width: 100% !important;
+  height: 100% !important;
+
+  filter:
+    drop-shadow(
+      0 0 40px rgba(99, 102, 241, 0.45)
+    );
+}
+
+/* =========================
+   FLOATING CIRCLES
+========================= */
+
+.bg_circle {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  animation: floatCircle 8s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+.circle1 {
+  width: 240px;
+  height: 240px;
+
+  background: #6366f1;
+
+  opacity: 0.18;
+
+  top: -70px;
+  left: -70px;
+}
+
+.circle2 {
+  width: 300px;
+  height: 300px;
+
+  background: #06b6d4;
+
+  opacity: 0.15;
+
+  right: -120px;
+  top: 120px;
+
+  animation-delay: 2s;
+}
+
+.circle3 {
+  width: 220px;
+  height: 220px;
+
+  background: #8b5cf6;
+
+  opacity: 0.15;
+
+  bottom: -90px;
+  left: 35%;
+
+  animation-delay: 4s;
+}
+
+@keyframes floatCircle {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   SCANNER CARD
+========================= */
+
+.scanner_card {
+  position: relative;
+
+  width: 520px;
+  height: 380px;
+
+  background: rgba(15, 23, 42, 0.7);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(99, 102, 241, 0.2);
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 0 80px rgba(79, 70, 229, 0.25),
+    0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+.article_header {
+  padding: 20px;
+
+  color: white;
+
+  font-weight: 600;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+.live_status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 15px 20px;
+
+  color: #22c55e;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  animation: pulse 1.5s infinite;
+}
+
+.article_content {
+  position: relative;
+
+  padding: 20px;
+}
+
+.article_content p {
+  color: #cbd5e1;
+
+  line-height: 1.8;
+
+  margin-bottom: 14px;
+}
+
+/* =========================
+   SCAN LINE
+========================= */
+
+.scan_line {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #22c55e,
+      transparent
+    );
+
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 220px;
+  }
+}
+
+/* =========================
+   ANALYSIS STATS
+========================= */
+
+.analysis_stats {
+  display: flex;
+
+  justify-content: space-around;
+
+  margin-top: 20px;
+}
+
+.analysis_stats h4 {
+  color: white;
+
+  font-size: 24px;
+
+  margin-bottom: 4px;
+}
+
+.analysis_stats span {
+  color: #94a3b8;
+
+  font-size: 13px;
+}
+
+/* =========================
+   FLOATING BADGES
+========================= */
+
+.floating_badge {
+  position: absolute;
+
+  padding: 12px 18px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  animation: floatingBadge 4s ease-in-out infinite;
+}
+
+.badge1 {
+  top: 20px;
+  right: -20px;
+
+  color: #22c55e;
+}
+
+.badge2 {
+  bottom: 80px;
+  right: -30px;
+
+  color: #60a5fa;
+}
+
+.badge3 {
+  bottom: 20px;
+  left: -20px;
+
+  color: #a78bfa;
+}
+
+@keyframes floatingBadge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* =========================
+   GLOW ORBS
+========================= */
+
+.glow_orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(60px);
+
+  pointer-events: none;
+}
+
+.orb1 {
+  width: 140px;
+  height: 140px;
+
+  background: rgba(99, 102, 241, 0.25);
+
+  top: -30px;
+  right: -30px;
+}
+
+.orb2 {
+  width: 120px;
+  height: 120px;
+
+  background: rgba(34, 197, 94, 0.18);
+
+  bottom: -20px;
+  left: -20px;
+}
+
+/* =========================
+   PULSE
+========================= */
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+  .hero {
+    flex-direction: column;
+
+    text-align: center;
+
+    padding:
+      120px 30px 60px;
+  }
+
+  .hero_left {
+    width: 100%;
+
+    max-width: 100%;
+  }
+
+  .hero_left h1 {
+    font-size: 52px;
+  }
+
+  .hero_buttons {
+    justify-content: center;
+  }
+
+  .hero_right {
+    width: 380px;
+    height: 380px;
+
+    margin-top: 50px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+  .hero {
+    width: 100%;
+
+    min-height: auto;
+
+    box-sizing: border-box;
+
+    padding:
+      80px 20px 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: hidden;
+  }
+
+  .hero_left {
+    width: 100%;
+
+    max-width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  .hero_left h1 {
+    font-size: 38px;
+
+    line-height: 1.15;
+
+    margin-bottom: 22px;
+  }
+
+  .hero_left p {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+  }
+
+  .hero_badge {
+    font-size: 14px;
+
+    padding: 9px 15px;
+  }
+
+  .hero_buttons {
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 14px;
+  }
+
+  .primary_btn,
+  .secondary_btn {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+  /* IMPORTANT:
+     Right side completely removed
+     on mobile */
+
+  .hero_right {
+    display: none !important;
+
+    width: 0 !important;
+    height: 0 !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .scanner_card {
+    display: none;
+  }
+
+  .floating_badge {
+    display: none;
+  }
+}
+/* =========================
+   MOBILE - FINAL FIX
+   Paste this at the very END of your CSS file
+   (after the existing @media (max-width: 650px) block)
+========================= */
+
+@media (max-width: 650px) {
+  body .hero .hero_right {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .hero .scanner_card,
+  body .hero .floating_badge {
+    display: none !important;
+  }
+}
