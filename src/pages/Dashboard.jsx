@@ -57,42 +57,41 @@ const Dashboard = () => {
   }, []);
 
   const fetchDashboardStats = async () => {
-    try {
-      const token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/auth/me`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/dashboard`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("DASHBOARD DATA:", response.data);
+
+    if (response.data.success) {
+      setStats(
+        response.data.stats || {
+          totalAnalyses: 0,
+          averageCredibility: 0,
+          fakeNewsDetected: 0,
+          articlesChecked: 0,
         }
       );
 
-      console.log("DASHBOARD DATA:", response.data);
-
-      if (response.data.success) {
-        // FIX: safe fallback agar stats undefined ho
-        setStats(
-          response.data.stats || {
-            totalAnalyses: 0,
-            averageCredibility: 0,
-            fakeNewsDetected: 0,
-            articlesChecked: 0,
-          }
-        );
-        setRecentAnalyses(response.data.recentAnalyses || []);
-      }
-    } catch (error) {
-      console.error(
-        "DASHBOARD ERROR:",
-        error.response?.data || error.message
-      );
-    } finally {
-      setLoading(false);
+      setRecentAnalyses(response.data.recentAnalyses || []);
     }
-  };
-
+  } catch (error) {
+    console.error(
+      "DASHBOARD ERROR:",
+      error.response?.data || error.message
+    );
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <section className="dashboard">
       <div className="dashboard_container">
