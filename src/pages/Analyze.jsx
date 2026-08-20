@@ -30,14 +30,13 @@ const Analyze = () => {
       console.log("ANALYZE BUTTON CLICKED");
       console.log("TOKEN:", token);
       console.log("Sending request to backend...");
-
-      const response = await axios.post(
-        "http://localhost:5000/api/analyze",
-        {
-          url: url.trim(),
-          articleText: article.trim(),
-        },
-        {
+const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/analyze`,
+  {
+    url: url.trim(),
+    articleText: article.trim(),
+  },
+  {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
