@@ -30,13 +30,14 @@ const Analyze = () => {
       console.log("ANALYZE BUTTON CLICKED");
       console.log("TOKEN:", token);
       console.log("Sending request to backend...");
-const response = await axios.post(
-  `${import.meta.env.VITE_API_URL}/api/analyze`,
-  {
-    url: url.trim(),
-    articleText: article.trim(),
-  },
-  {
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/analyze`,
+        {
+          url: url.trim(),
+          articleText: article.trim(),
+        },
+        {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -156,6 +157,36 @@ const response = await axios.post(
                 <p>
                   Here is what TruthLens AI found about this article.
                 </p>
+              </div>
+
+              {/* ==========================================
+                  FINAL VERDICT
+              ========================================== */}
+              <div
+                className={`final_verdict ${
+                  result.verdictType?.toLowerCase() || "uncertain"
+                }`}
+              >
+                <div className="final_verdict_icon">
+                  {result.verdictType === "GENUINE"
+                    ? "🟢"
+                    : result.verdictType === "FAKE"
+                    ? "🔴"
+                    : "🟡"}
+                </div>
+
+                <div className="final_verdict_content">
+                  <span>FINAL VERDICT</span>
+
+                  <h3>
+                    {result.finalVerdict || "Needs Verification"}
+                  </h3>
+
+                  <p>
+                    This result is based on the AI-generated fake-news
+                    risk and credibility scores.
+                  </p>
+                </div>
               </div>
 
               {/* SCORE GRID */}

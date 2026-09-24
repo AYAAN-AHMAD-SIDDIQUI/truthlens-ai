@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/Result.css";
-
+import { useNavigate } from "react-router-dom";
 const result = {
   summary:
     "NASA announced a new mission to Mars. Multiple trusted sources confirm the announcement.",
