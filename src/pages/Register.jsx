@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api";
 import "../styles/Register.css";
-import { Link } from "react-router-dom";
+
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,83 +10,82 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
     try {
       await API.post("/auth/register", {
-        name,
-        email,
+        name: name.trim(),
+        email: email.trim(),
         password,
       });
 
       alert("Registration Successful");
       navigate("/login");
     } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Registration Failed"
-      );
+      alert(err.response?.data?.message || "Registration Failed");
     }
   };
 
   return (
-  <div className="register_container">
-    <div className="register_card">
+    <div className="register_container">
+      <form className="register_card" onSubmit={handleRegister}>
+        <h2 className="register_title">Create Account</h2>
+        <p className="register_subtitle">Join TruthLens AI</p>
 
-      <h2 className="register_title">
-        Create Account
-      </h2>
+        <input
+          id="register-name"
+          name="name"
+          className="register_input"
+          type="text"
+          placeholder="Enter Name"
+          autoComplete="name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          required
+        />
 
-      <p className="register_subtitle">
-        Join TruthLens AI
-      </p>
+        <input
+          id="register-email"
+          name="email"
+          className="register_input"
+          type="email"
+          placeholder="Enter Email"
+          autoComplete="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          required
+        />
 
-      <input
-        className="register_input"
-        type="text"
-        placeholder="Enter Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+        <input
+          id="register-password"
+          name="password"
+          className="register_input"
+          type="password"
+          placeholder="Enter Password"
+          autoComplete="new-password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+          minLength={8}
+        />
 
-      <input
-        className="register_input"
-        type="email"
-        placeholder="Enter Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <button className="register_btn" type="submit">
+          Sign Up
+        </button>
 
-      <input
-        className="register_input"
-        type="password"
-        placeholder="Enter Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <button
-        className="register_btn"
-        onClick={handleRegister}
-      >
-        Sign Up
-      </button>
-
-      <p
-        style={{
-          textAlign: "center",
-          marginTop: "15px",
-          color: "#94a3b8"
-        }}
-      >
-        Already have an account?{" "}
-        <Link to="/login">
-          Login
-        </Link>
-      </p>
-
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "15px",
+            color: "#94a3b8",
+          }}
+        >
+          Already have an account?{" "}
+          <Link to="/login">Login</Link>
+        </p>
+      </form>
     </div>
-  </div>
-
   );
 }
 
