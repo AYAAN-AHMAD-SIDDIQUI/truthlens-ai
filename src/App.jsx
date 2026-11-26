@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Analyze from "./pages/Analyze";
@@ -11,54 +11,24 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <Routes>
-
-      {/* Public Routes */}
-
-      <Route
-        path="/"
-        element={<Home />}
-      />
-
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-
-      <Route
-        path="/register"
-        element={<Register />}
-      />
-
-
-      {/* Protected Routes */}
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
       <Route
         path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
+        element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
       />
-
       <Route
         path="/analyze"
-        element={
-          <ProtectedRoute>
-            <Analyze />
-          </ProtectedRoute>
-        }
+        element={<ProtectedRoute><Analyze /></ProtectedRoute>}
       />
-
       <Route
         path="/history"
-        element={
-          <ProtectedRoute>
-            <History />
-          </ProtectedRoute>
-        }
+        element={<ProtectedRoute><History /></ProtectedRoute>}
       />
 
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
