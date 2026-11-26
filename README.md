@@ -1,16 +1,68 @@
-# React + Vite
+# TruthLens AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TruthLens AI is an AI-assisted news literacy platform that helps users examine news articles, understand potential misinformation risk, and review credibility, bias, and sentiment indicators.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- User registration and login with JWT authentication
+- Submit a news article by URL or pasted text
+- AI-generated article summary
+- Estimated misinformation-risk and credibility scores
+- Bias and sentiment indicators
+- Personal analysis history and dashboard statistics
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend:** React, Vite, React Router, Axios, CSS  
+**Backend:** Node.js, Express  
+**Database:** PostgreSQL with Prisma  
+**AI:** Google Gemini API  
+**Authentication:** JWT and bcryptjs
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/` — React frontend
+- `backend/` — Express API, Prisma schema, and AI analysis logic
+
+## Local Setup
+
+### Backend
+
+Open a terminal in the backend directory:
+
+```bash
+npm install
+```
+
+Create a `.env` file using the variables required by your deployment:
+
+```env
+PORT=5000
+DATABASE_URL=your_postgresql_connection_string
+JWT_SECRET=use_a_long_random_secret
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=your_supported_gemini_model
+```
+
+Run the database migrations and start the backend using the scripts configured in `backend/package.json`.
+
+### Frontend
+
+Create a frontend `.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Then run:
+
+```bash
+npm install
+npm run dev
+```
+
+For deployment, set `VITE_API_URL` to the deployed backend origin (without the `/api` suffix), and configure the backend environment variables in the hosting provider.
+
+## Important Note
+
+TruthLens AI provides AI-generated estimates to support news literacy. Its scores are not proof that an article is true or false and do not replace independent fact-checking from reliable sources.
