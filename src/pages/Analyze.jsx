@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Analyze.css";
-import axios from "axios";
+import API from "../services/api";
 
 const Analyze = () => {
   const [url, setUrl] = useState("");
@@ -16,10 +16,9 @@ const Analyze = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
-
-    if (!token) {
+    if (!localStorage.getItem("token")) {
       alert("Please Login First");
+      window.location.href = "/login";
       return;
     }
 
@@ -27,34 +26,17 @@ const Analyze = () => {
       setLoading(true);
       setResult(null);
 
-      console.log("ANALYZE BUTTON CLICKED");
-      console.log("TOKEN:", token);
-      console.log("Sending request to backend...");
+      const response = await API.post("/analyze", {
+        url: url.trim(),
+        articleText: article.trim(),
+      });
 
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/analyze`,
-        {
-          url: url.trim(),
-          articleText: article.trim(),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log("BACKEND RESPONSE:", response.data);
-
-      if (response.data.success) {
+      if (response.data.success && response.data.analysis) {
         setResult(response.data.analysis);
       } else {
         alert(response.data.message || "Analysis failed.");
       }
     } catch (error) {
-      console.error("ANALYZE ERROR:", error);
-
       if (error.response?.status === 401) {
         localStorage.removeItem("token");
         alert("Session expired. Please login again.");
@@ -64,7 +46,7 @@ const Analyze = () => {
 
       alert(
         error.response?.data?.message ||
-          "Something went wrong while analyzing the news."
+        "Something went wrong while analyzing the news."
       );
     } finally {
       setLoading(false);
@@ -74,48 +56,30 @@ const Analyze = () => {
   return (
     <section className="analyze">
       <div className="analyze_container">
-
-        {/* HEADER */}
         <div className="analyze_header">
-          <span className="analyze_badge">
-            🤖 AI Powered Analysis
-          </span>
-
+          <span className="analyze_badge">🤖 AI Powered Analysis</span>
           <h1>Analyze News</h1>
-
           <p>
             Paste a news article or enter a URL to verify its credibility,
             detect bias, and generate an AI-powered report.
           </p>
         </div>
 
-        {/* ANALYZE CARD */}
-        <form
-          className="analyze_card"
-          onSubmit={handleAnalyze}
-        >
-
-          {/* URL */}
+        <form className="analyze_card" onSubmit={handleAnalyze}>
           <div className="input_group">
             <label>News URL</label>
-
             <input
-              type="text"
+              type="url"
               placeholder="https://example.com/news"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>
 
-          {/* DIVIDER */}
-          <div className="divider">
-            <span>OR</span>
-          </div>
+          <div className="divider"><span>OR</span></div>
 
-          {/* ARTICLE */}
           <div className="input_group">
             <label>Paste News Article</label>
-
             <textarea
               rows="10"
               placeholder="Paste your news article here..."
@@ -124,160 +88,80 @@ const Analyze = () => {
             />
           </div>
 
-          {/* BUTTON */}
-          <button
-            type="submit"
-            className="analyze_btn"
-            disabled={loading}
-          >
+          <button type="submit" className="analyze_btn" disabled={loading}>
             {loading ? (
               <>
                 <span className="loader"></span>
                 Analyzing...
               </>
             ) : (
-              <>
-                ✨ Analyze News
-              </>
+              <>✨ Analyze News</>
             )}
           </button>
 
-          {/* RESULT */}
           {result && (
             <div className="analysis_result">
-
-              {/* RESULT HEADER */}
               <div className="result_header">
-                <span className="result_badge">
-                  ✨ AI ANALYSIS COMPLETE
-                </span>
-
+                <span className="result_badge">✨ AI ANALYSIS COMPLETE</span>
                 <h2>News Analysis Report</h2>
-
-                <p>
-                  Here is what TruthLens AI found about this article.
-                </p>
+                <p>Here is what TruthLens AI found about this article.</p>
               </div>
 
-              {/* ==========================================
-                  FINAL VERDICT
-              ========================================== */}
-              <div
-                className={`final_verdict ${
-                  result.verdictType?.toLowerCase() || "uncertain"
-                }`}
-              >
+              <div className={`final_verdict ${result.verdictType?.toLowerCase() || "uncertain"}`}>
                 <div className="final_verdict_icon">
-                  {result.verdictType === "GENUINE"
-                    ? "🟢"
-                    : result.verdictType === "FAKE"
-                    ? "🔴"
-                    : "🟡"}
+                  {result.verdictType === "GENUINE" ? "🟢" : result.verdictType === "FAKE" ? "🔴" : "🟡"}
                 </div>
-
                 <div className="final_verdict_content">
                   <span>FINAL VERDICT</span>
-
-                  <h3>
-                    {result.finalVerdict || "Needs Verification"}
-                  </h3>
-
+                  <h3>{result.finalVerdict || "Needs Verification"}</h3>
                   <p>
-                    This result is based on the AI-generated fake-news
-                    risk and credibility scores.
+                    This result is based on AI-estimated misinformation risk
+                    and credibility scores, not independent fact-checking.
                   </p>
                 </div>
               </div>
 
-              {/* SCORE GRID */}
               <div className="score_grid">
-
-                {/* FAKE SCORE */}
                 <div className="score_card fake">
-                  <div className="score_icon">
-                    ⚠️
-                  </div>
-
+                  <div className="score_icon">⚠️</div>
                   <span>Fake News Score</span>
-
-                  <strong>
-                    {result.fakeScore}%
-                  </strong>
-
+                  <strong>{result.fakeScore}%</strong>
                   <div className="score_bar">
-                    <div
-                      style={{
-                        width: `${result.fakeScore}%`,
-                      }}
-                    ></div>
+                    <div style={{ width: `${result.fakeScore}%` }}></div>
                   </div>
                 </div>
 
-                {/* CREDIBILITY */}
                 <div className="score_card credibility">
-                  <div className="score_icon">
-                    🛡️
-                  </div>
-
+                  <div className="score_icon">🛡️</div>
                   <span>Credibility Score</span>
-
-                  <strong>
-                    {result.credibilityScore}%
-                  </strong>
-
+                  <strong>{result.credibilityScore}%</strong>
                   <div className="score_bar">
-                    <div
-                      style={{
-                        width: `${result.credibilityScore}%`,
-                      }}
-                    ></div>
+                    <div style={{ width: `${result.credibilityScore}%` }}></div>
                   </div>
                 </div>
 
-                {/* BIAS */}
                 <div className="info_card">
-                  <div className="score_icon">
-                    🎯
-                  </div>
-
+                  <div className="score_icon">🎯</div>
                   <span>Bias</span>
-
-                  <strong>
-                    {result.bias}
-                  </strong>
+                  <strong>{result.bias}</strong>
                 </div>
 
-                {/* SENTIMENT */}
                 <div className="info_card">
-                  <div className="score_icon">
-                    💭
-                  </div>
-
+                  <div className="score_icon">💭</div>
                   <span>Sentiment</span>
-
-                  <strong>
-                    {result.sentiment}
-                  </strong>
+                  <strong>{result.sentiment}</strong>
                 </div>
-
               </div>
 
-              {/* SUMMARY */}
               <div className="summary_card">
                 <div className="summary_title">
                   <span>📝</span>
-
                   <h3>AI Summary</h3>
                 </div>
-
-                <p>
-                  {result.summary}
-                </p>
+                <p>{result.summary}</p>
               </div>
-
             </div>
           )}
-
         </form>
       </div>
     </section>
