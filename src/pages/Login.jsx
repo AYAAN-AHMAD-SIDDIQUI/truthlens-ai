@@ -45,18 +45,24 @@ function Login() {
         <p className="login_subtitle">Login to TruthLens AI</p>
 
         <input
+          id="login-email"
+          name="email"
           className="login_input"
           type="email"
           placeholder="Enter Email"
+          autoComplete="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required
         />
 
         <input
+          id="login-password"
+          name="password"
           className="login_input"
           type="password"
           placeholder="Enter Password"
+          autoComplete="current-password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
